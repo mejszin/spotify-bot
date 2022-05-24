@@ -1,0 +1,13 @@
+# Spotify
+
+Usage:
+  ~spotify <command>
+
+Commands:
+  track <query>       Show a track message
+  info <query>        Show a track message with more information
+  suggest <genres>    Find 3 random suggestions by genres
+  genres              List of available genres for suggestions
+  gamut               Show all the emojis used to show energy level
+
+> Note: Defaults to track if no valid command is found
