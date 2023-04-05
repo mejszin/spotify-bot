@@ -49,9 +49,9 @@ $bot.message(start_with: PREFIX + 'listen') do |event|
     while true
         get_alerts().each do |alert|
             puts [alert["timestamp"], last_check].inspect
-            if alert["timestamp"] < last_check
+            if alert["timestamp"] < last_check - 3600
                 if alert.key?("caller")
-                    event.respond format_help("Incoming call from '#{alert["caller"]}...'")
+                    event.respond format_help("Incoming call from '#{alert["caller"]}'...")
                 else
                     event.respond format_help(alert.inspect)
                 end
