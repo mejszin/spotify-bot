@@ -11,6 +11,19 @@ EMOTION_GAMUT = [
     ":exploding_head:",
 ]
 
+def get(url, headers = {})
+    uri = URI(url)
+    uri.query = URI.encode_www_form(headers) unless headers == {}
+#   puts uri if VERBOSE
+    res = Net::HTTP.get_response(uri)
+#   puts res.code
+    return res.code == '200' ? JSON.parse(res.body) : {}
+end
+
+def get_alerts
+    get('https://machin.dev/public/json/alerts.json')
+end
+
 def auth_spotify
     begin
         RSpotify::authenticate(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)

@@ -43,6 +43,25 @@ $bot.message(start_with: PREFIX + 'test') do |event|
     event.message.user.pm "Test"
 end
 
+$bot.message(start_with: PREFIX + 'listen') do |event|
+    event.respond format_success('Listening to alerts...')
+    last_check = Time.now.to_i
+    while true
+        get_alerts().each do |alert|
+            puts [alert["timestamp"], last_check].inspect
+            if alert["timestamp"] < last_check
+                if alert.key?("caller")
+                    event.respond format_help("Incoming call from '#{alert["caller"]}...'")
+                else
+                    event.respond format_help(alert.inspect)
+                end
+            end
+        end
+        last_check = Time.now.to_i
+        sleep(10)
+    end
+end
+
 # require './lib/slash.rb'
 
 $bot.run
