@@ -47,7 +47,9 @@ $bot.message(start_with: PREFIX + 'listen') do |event|
     event.respond format_success('Listening to alerts...')
     last_check = Time.now.to_i
     while true
-        get_alerts().each do |alert|
+        alerts = get_alerts()
+        puts "(#{alerts.size}) alerts"
+        alerts.each do |alert|
             puts [alert["timestamp"], last_check].inspect
             if alert["timestamp"] < last_check - 3600
                 if alert.key?("caller")
