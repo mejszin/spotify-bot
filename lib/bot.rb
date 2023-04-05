@@ -1,5 +1,5 @@
-BOT_NAME = 'La Pénombre'
-BOT_AVATAR = './data/waxing_crescent_moon.png'
+BOT_NAME = '👉👈'
+BOT_AVATAR = './data/pleading_face.png'
 PREFIX = '.'
 
 require 'bundler'
